@@ -1,0 +1,67 @@
+body {
+    font-family: Arial;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+.sideComponents {
+    width: 30%;
+}
+
+.sideComponents img {
+    width: 200px;
+}
+
+.centerComponent {
+    width: 40%;
+}
+
+.optionButtons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.optionButtons button {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.optionButtons img {
+    width: 50px;
+}
+
+#btnPlay, #btnReset {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.score {
+    margin-top: 20px;
+}
+
+.gameMode {
+    margin-top: 10px;
+}
+
+.optionButtons button {
+    padding: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.optionButtons button.selected {
+    border: 2px solid blue;
+    background-color: #e6f0ff;
+}
+
+#cpuImg {
+  transform: scaleX(-1);
+}

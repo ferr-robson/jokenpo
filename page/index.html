@@ -1,11 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jokenpo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Jokenpo</h1>
+    <div class="container">
+
+        <div class="sideComponents">
+            <img id="playerImg" src="img/pedra.png" alt="Jogador">
+        </div>
+
+        <div class="centerComponent">
+            <h2 id="message">Escolha sua jogada</h2>
+
+            <div class="optionButtons">
+                <button onclick="choosePlay(0)" class="selected">
+                    <img src="img/pedra.png"><br>Pedra
+                </button>
+
+                <button onclick="choosePlay(1)">
+                    <img src="img/papel.png"><br>Papel
+                </button>
+
+                <button onclick="choosePlay(2)">
+                    <img src="img/tesoura.png"><br>Tesoura
+                </button>
+            </div>
+
+            <button id="btnPlay" onclick="play()">Jogar</button>
+
+            <button id="btnReset" onclick="resetGame()" style="display:none;">
+                Jogar novamente
+            </button>
+
+            <div class="score">
+                <p>Jogador: <span id="playerPoints">0</span></p>
+                <p>CPU: <span id="cpuPoints">0</span></p>
+            </div>
+
+            <div class="gameMode">
+                <label>
+                    <input type="radio" name="gameMode" value="3" checked> md3
+                </label>
+                
+                <label>
+                    <input type="radio" name="gameMode" value="5"> md5
+                </label>
+            </div>
+
+        </div>
+
+        <div class="sideComponents">
+            <img id="cpuImg" src="img/pedra.png" alt="CPU">
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
