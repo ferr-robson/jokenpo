@@ -66,4 +66,4 @@ page/
 
 ## 👨‍💻 Autor
 
-Aluno do curso de **Graduação em [Nome do Curso]** na **[Nome da Universidade]** – Projeto para disciplina de Desenvolvimento Web.
+Robson Santos - aluno do curso de **Graduação em Sistemas de Informação** na **Universidade Federal de Lavras** – Projeto para disciplina de Desenvolvimento Web - GAC116.
