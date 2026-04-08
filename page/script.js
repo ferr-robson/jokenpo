@@ -7,12 +7,13 @@ let cpuPoints = 0;
 
 function choosePlay(option) {
     playerChoise = option;
-    document.getElementById("playerImg").src = images[option];
 
-    const buttons = document.querySelectorAll(".optionButtons button");
-    buttons.forEach(btn => btn.classList.remove("selected"));
+    $("#playerImg").attr("src", images[option]);
 
-    buttons[option].classList.add("selected");
+    const buttons = $(".optionButtons button");
+    buttons.removeClass("selected");
+
+    $(".optionButtons button").eq(option).addClass("selected");
 }
 
 function result(player, cpu) {
@@ -32,13 +33,13 @@ function result(player, cpu) {
 }
 
 function play() {
-    const cpuImage = document.getElementById("cpuImg");
-    const playButton = document.getElementById("btnPlay");
+    const cpuImage = $("#cpuImg");
+    const playButton = $("#btnPlay");
 
-    const selectedMode = document.querySelector('input[name="gameMode"]:checked').value;
+    const selectedMode = $('input[name="gameMode"]:checked').val();
     const limit = Math.ceil(selectedMode / 2);
 
-    playButton.disabled = true;
+    playButton.prop("disabled", true);
 
     let time = 100;
     let totalTime = 0;
@@ -46,7 +47,7 @@ function play() {
 
     function changeImage() {
         const index = Math.floor(Math.random() * images.length);
-        cpuImage.src = images[index];
+        cpuImage.attr("src", images[index]);
 
         totalTime += time;
 
@@ -55,27 +56,27 @@ function play() {
             setTimeout(changeImage, time);
         } else {
             const finalIndex = Math.floor(Math.random() * images.length);
-            cpuImage.src = images[finalIndex];
+            cpuImage.attr("src", images[finalIndex]);
 
             const res = result(playerChoise, finalIndex);
-            document.getElementById("message").innerText = res;
+            $("#message").text(res);
 
-            document.getElementById("playerPoints").innerText = playerPoints;
-            document.getElementById("cpuPoints").innerText = cpuPoints;
+            $("#playerPoints").text(playerPoints);
+            $("#cpuPoints").text(cpuPoints);
 
             if (playerPoints === limit || cpuPoints === limit) {
                 if (playerPoints === limit) {
-                    document.getElementById("message").innerText = "🎉 Você ganhou o jogo!";
+                    $("#message").text("🎉 Você ganhou o jogo!");
                 } else {
-                    document.getElementById("message").innerText = "😢 CPU ganhou o jogo!";
+                    $("#message").text("😢 CPU ganhou o jogo!");
                 }
 
-                playButton.disabled = true;
+                playButton.prop("disabled", true);
 
-                document.getElementById("btnPlay").hidden = true;
-                document.getElementById("btnReset").hidden = false;
+                $("#btnPlay").hide();
+                $("#btnReset").show();
             } else {
-                playButton.disabled = false;
+                playButton.prop("disabled", false);
             }
         }
     }
@@ -87,12 +88,15 @@ function resetGame() {
     playerPoints = 0;
     cpuPoints = 0;
 
-    document.getElementById("playerPoints").innerText = 0;
-    document.getElementById("cpuPoints").innerText = 0;
-    document.getElementById("message").innerText = "Novo jogo!";
+    $("#playerPoints").text(0);
+    $("#cpuPoints").text(0);
+    $("#message").text("Novo jogo!");
 
-    document.getElementById("btnPlay").hidden = false;
-    document.getElementById("btnPlay").disabled = false;
-    
-    document.getElementById("btnReset").hidden = true;
+    $("#btnPlay").show().prop("disabled", false);
+    $("#btnReset").hide();
 }
+
+$(".optionButtons button").on("click", function () {
+    const option = $(this).data("option");
+    choosePlay(option);
+});
