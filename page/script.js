@@ -72,13 +72,11 @@ function play() {
 
                 playButton.disabled = true;
 
-                document.getElementById("btnPlay").style.display = "none";
-                document.getElementById("btnReset").style.display = "inline-block";
+                document.getElementById("btnPlay").hidden = true;
+                document.getElementById("btnReset").hidden = false;
             } else {
                 playButton.disabled = false;
             }
-
-            playButton.disabled = false;
         }
     }
 
@@ -93,8 +91,8 @@ function resetGame() {
     document.getElementById("cpuPoints").innerText = 0;
     document.getElementById("message").innerText = "Novo jogo!";
 
-    document.getElementById("btnPlay").style.display = "inline-block";
+    document.getElementById("btnPlay").hidden = false;
     document.getElementById("btnPlay").disabled = false;
-
-    document.getElementById("btnReset").style.display = "none";
+    
+    document.getElementById("btnReset").hidden = true;
 }

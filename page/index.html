@@ -7,57 +7,71 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
 
-        <div class="sideComponents">
+        <aside class="sideComponents">
             <img id="playerImg" src="img/pedra.png" alt="Jogador">
-        </div>
+        </aside>
 
-        <div class="centerComponent">
-            <h2 id="message">Escolha sua jogada</h2>
+        <section class="centerComponent">
+            <header>
+                <h1>Jokenpô</h1>
+                <p id="message">Escolha sua jogada</p>
+            </header>
 
-            <div class="optionButtons">
+            <section class="optionButtons" aria-label="Escolha sua jogada">
                 <button onclick="choosePlay(0)" class="selected">
-                    <img src="img/pedra.png"><br>Pedra
+                    <img src="img/pedra.png" alt="Pedra">
+                    <span>Pedra</span>
                 </button>
 
                 <button onclick="choosePlay(1)">
-                    <img src="img/papel.png"><br>Papel
+                    <img src="img/papel.png" alt="Papel">
+                    <span>Papel</span>
                 </button>
 
                 <button onclick="choosePlay(2)">
-                    <img src="img/tesoura.png"><br>Tesoura
+                    <img src="img/tesoura.png" alt="Tesoura">
+                    <span>Tesoura</span>
                 </button>
-            </div>
+            </section>
 
-            <button id="btnPlay" onclick="play()">Jogar</button>
+            <section class="actions">
+                <button id="btnPlay" onclick="play()">Jogar</button>
 
-            <button id="btnReset" onclick="resetGame()" style="display:none;">
-                Jogar novamente
-            </button>
+                <button id="btnReset" onclick="resetGame()" hidden>
+                    Jogar novamente
+                </button>
+            </section>
 
-            <div class="score">
-                <p>Jogador: <span id="playerPoints">0</span></p>
-                <p>CPU: <span id="cpuPoints">0</span></p>
-            </div>
+            <section class="score" aria-label="Placar">
+                <p>Jogador: <output id="playerPoints">0</output></p>
+                <p>CPU: <output id="cpuPoints">0</output></p>
+            </section>
 
-            <div class="gameMode">
-                <label>
-                    <input type="radio" name="gameMode" value="3" checked> md3
-                </label>
-                
-                <label>
-                    <input type="radio" name="gameMode" value="5"> md5
-                </label>
-            </div>
+            <form class="gameMode">
+                <fieldset>
+                    <legend>Modo de jogo</legend>
 
-        </div>
+                    <label>
+                        <input type="radio" name="gameMode" value="3" checked>
+                        Melhor de 3
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="gameMode" value="5">
+                        Melhor de 5
+                    </label>
+                </fieldset>
+            </form>
 
-        <div class="sideComponents">
+        </section>
+
+        <aside class="sideComponents">
             <img id="cpuImg" src="img/pedra.png" alt="CPU">
-        </div>
+        </aside>
 
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
