@@ -3,11 +3,34 @@ body {
     text-align: center;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+.mainHeader {
+    background-color: rgb(110, 59, 173);
+    color: white;
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgb(150, 100, 210);
+    border-radius: 100%;
+    margin-bottom: 10px;
+}
+
+header h1 {
+    margin: 0;
+}
+
 .container {
+    background-color: rgb(245, 240, 255);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: 70vh;
 }
 
 .sideComponents {
@@ -22,6 +45,12 @@ body {
     width: 40%;
 }
 
+button {
+    border-radius: 8%;
+    cursor: pointer;
+    background-color: rgb(200, 200, 220);
+}
+
 .optionButtons {
     display: flex;
     justify-content: center;
@@ -31,7 +60,6 @@ body {
 
 .optionButtons button {
     padding: 10px;
-    cursor: pointer;
 }
 
 .optionButtons img {
@@ -41,6 +69,7 @@ body {
 #btnPlay, #btnReset {
     padding: 10px 20px;
     font-size: 16px;
+    border: 1px solid #ccc;
 }
 
 .score {
@@ -78,4 +107,47 @@ body {
 
 #cpuImg {
   transform: scaleX(-1);
+}
+
+footer {
+    background-color: rgb(110, 59, 173);
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+#message {
+    transition: all 0.3s ease;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.win {
+    background-color: #4CAF50;
+    color: white;
+    transform: scale(1.05);
+}
+
+.lose {
+    background-color: #f44336;
+    color: white;
+    transform: scale(1.05);
+}
+
+.draw {
+    background-color: #2196F3;
+    color: white;
+    transform: scale(1.05);
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1.05); }
+}
+
+.win, .lose, .draw {
+    animation: pop 0.3s ease;
 }

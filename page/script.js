@@ -32,6 +32,25 @@ function result(player, cpu) {
     }
 }
 
+function setMessageValue(message) {
+    const $msg = $("#message");
+
+    const classMap = {
+        "Você venceu!": "win",
+        "Você perdeu :(": "lose",
+        "Empate": "draw"
+    };
+
+    const className = classMap[message] || "";
+
+    $msg.text(message);
+
+    $msg.removeClass("win lose draw");
+    if (className) $msg.addClass(className);
+
+    return $msg;
+}
+
 function play() {
     const cpuImage = $("#cpuImg");
     const playButton = $("#btnPlay");
@@ -59,10 +78,15 @@ function play() {
             cpuImage.attr("src", images[finalIndex]);
 
             const res = result(playerChoise, finalIndex);
-            $("#message").text(res);
 
             $("#playerPoints").text(playerPoints);
             $("#cpuPoints").text(cpuPoints);
+
+            const $msg = setMessageValue(res);
+
+            setTimeout(() => {
+                $msg.removeClass("win lose draw").text("Escolha sua jogada");
+            }, 1500);
 
             if (playerPoints === limit || cpuPoints === limit) {
                 if (playerPoints === limit) {
@@ -90,7 +114,6 @@ function resetGame() {
 
     $("#playerPoints").text(0);
     $("#cpuPoints").text(0);
-    $("#message").text("Novo jogo!");
 
     $("#btnPlay").show().prop("disabled", false);
     $("#btnReset").hide();
