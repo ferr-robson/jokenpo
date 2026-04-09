@@ -51,10 +51,9 @@ page/
 
 ## 🛠 Tecnologias Utilizadas
 
-- **HTML5** – Estrutura da página  
-- **CSS3** – Estilização e animações  
-- **JavaScript** – Lógica do jogo e manipulação do DOM  
-- **jQuery** – Para manipulação de elementos HTML de forma simplificada  
+- **HTML5** – Estrutura da página
+- **CSS3** – Estilização e animações
+- **JavaScript** – Lógica do jogo e manipulação do DOM
 
 ---
 

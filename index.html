@@ -25,17 +25,17 @@
             </header>
 
             <section class="optionButtons" aria-label="Escolha sua jogada">
-                <button data-option="0" class="selected">
+                <button onclick="choosePlay(0)" class="selected">
                     <img src="img/pedra.png" alt="Pedra">
                     <span>Pedra</span>
                 </button>
 
-                <button data-option="1">
+                <button onclick="choosePlay(1)">
                     <img src="img/papel.png" alt="Papel">
                     <span>Papel</span>
                 </button>
 
-                <button data-option="2">
+                <button onclick="choosePlay(2)">
                     <img src="img/tesoura.png" alt="Tesoura">
                     <span>Tesoura</span>
                 </button>
@@ -82,11 +82,6 @@
         <p><b>Copyright:</b> 2026</p>
     </footer>
 
-    <script 
-        src="https://code.jquery.com/jquery-3.7.1.min.js" 
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
-        crossorigin="anonymous">
-    </script> 
     <script src="script.js"></script>
 </body>
 </html>

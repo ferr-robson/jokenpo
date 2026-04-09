@@ -8,12 +8,14 @@ let cpuPoints = 0;
 function choosePlay(option) {
     playerChoise = option;
 
-    $("#playerImg").attr("src", images[option]);
+    document.getElementById("playerImg").src = images[option];
 
-    const buttons = $(".optionButtons button");
-    buttons.removeClass("selected");
+    const buttons = document.querySelectorAll(".optionButtons button");
+    buttons.forEach(button => button.classList.remove("selected"));
 
-    $(".optionButtons button").eq(option).addClass("selected");
+    if (buttons[option]) {
+        buttons[option].classList.add("selected");
+    }
 }
 
 function result(player, cpu) {
@@ -33,7 +35,7 @@ function result(player, cpu) {
 }
 
 function setMessageValue(message) {
-    const $msg = $("#message");
+    const msg = document.getElementById("message");
 
     const classMap = {
         "Você venceu!": "win",
@@ -43,22 +45,25 @@ function setMessageValue(message) {
 
     const className = classMap[message] || "";
 
-    $msg.text(message);
+    msg.textContent = message;
 
-    $msg.removeClass("win lose draw");
-    if (className) $msg.addClass(className);
+    msg.classList.remove("win", "lose", "draw");
 
-    return $msg;
+    if (className) {
+        msg.classList.add(className);
+    }
+
+    return msg;
 }
 
 function play() {
-    const cpuImage = $("#cpuImg");
-    const playButton = $("#btnPlay");
+    const cpuImage = document.getElementById("cpuImg");
+    const playButton = document.getElementById("btnPlay");
 
-    const selectedMode = $('input[name="gameMode"]:checked').val();
+    const selectedMode = document.querySelector('input[name="gameMode"]:checked').value;
     const limit = Math.ceil(selectedMode / 2);
 
-    playButton.prop("disabled", true);
+    playButton.disabled = true;
 
     let time = 100;
     let totalTime = 0;
@@ -66,7 +71,7 @@ function play() {
 
     function changeImage() {
         const index = Math.floor(Math.random() * images.length);
-        cpuImage.attr("src", images[index]);
+        cpuImage.src = images[index];
 
         totalTime += time;
 
@@ -75,32 +80,34 @@ function play() {
             setTimeout(changeImage, time);
         } else {
             const finalIndex = Math.floor(Math.random() * images.length);
-            cpuImage.attr("src", images[finalIndex]);
+            cpuImage.src = images[finalIndex];
 
             const res = result(playerChoise, finalIndex);
 
-            $("#playerPoints").text(playerPoints);
-            $("#cpuPoints").text(cpuPoints);
+            document.getElementById("playerPoints").textContent = playerPoints;
+            document.getElementById("cpuPoints").textContent = cpuPoints;
 
-            const $msg = setMessageValue(res);
+            const msg = setMessageValue(res);
 
             setTimeout(() => {
-                $msg.removeClass("win lose draw").text("Escolha sua jogada");
+                msg.classList.remove("win", "lose", "draw");
+                msg.textContent = "Escolha sua jogada";
             }, 1500);
 
             if (playerPoints === limit || cpuPoints === limit) {
+                const messageEl = document.getElementById("message");
                 if (playerPoints === limit) {
-                    $("#message").text("🎉 Você ganhou o jogo!");
+                    messageEl.textContent = "🎉 Você ganhou o jogo!";
                 } else {
-                    $("#message").text("😢 CPU ganhou o jogo!");
+                    messageEl.textContent = "😢 CPU ganhou o jogo!";
                 }
 
-                playButton.prop("disabled", true);
+                playButton.disabled = true;
 
-                $("#btnPlay").hide();
-                $("#btnReset").show();
+                playButton.style.display = "none";
+                document.getElementById("btnReset").style.display = "inline-block";
             } else {
-                playButton.prop("disabled", false);
+                playButton.disabled = false;
             }
         }
     }
@@ -112,14 +119,12 @@ function resetGame() {
     playerPoints = 0;
     cpuPoints = 0;
 
-    $("#playerPoints").text(0);
-    $("#cpuPoints").text(0);
+    document.getElementById("playerPoints").textContent = 0;
+    document.getElementById("cpuPoints").textContent = 0;
 
-    $("#btnPlay").show().prop("disabled", false);
-    $("#btnReset").hide();
+    const btnPlay = document.getElementById("btnPlay");
+    btnPlay.style.display = "inline-block";
+    btnPlay.disabled = false;
+
+    document.getElementById("btnReset").style.display = "none";
 }
-
-$(".optionButtons button").on("click", function () {
-    const option = $(this).data("option");
-    choosePlay(option);
-});
